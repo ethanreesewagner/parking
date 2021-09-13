@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parking Lot</title>
+</head>
+<body>
+    <h1 style="font-size: 50">Parking Lot</h1>
+    <canvas id="myCanvas" style="border-style: ridge; border-width:10px" id="myCanvas" width="500" height="500"></canvas>	
+    <script>
+const canvas = document.getElementById('myCanvas')
+const ctx = canvas.getContext('2d')
+const rover_width = 60
+const rover_height = 40
+var rover_x = 10
+var rover_y = 10
+background_img = new Image()
+function uploadBackground(){
+    ctx.drawImage(background_img, 0, 0, canvas.width, canvas.height)
+}
+background_img.addEventListener('load', function () {
+  uploadBackground()
+})
+background_img.src = 'parkinglot.jpg'
+rover_img = new Image()
+function uploadrover(){
+    ctx.drawImage(rover_img, rover_x, rover_y, rover_width, rover_height)
+}
+rover_img.addEventListener('load', function () {
+  uploadrover()
+})
+rover_img.src = 'lightgreencar.png'
+window.addEventListener('keydown', my_keydown)
+function my_keydown (e) {
+  keyPressed = e.keyCode; console.log(keyPressed)
+  if (keyPressed == '38') {
+    if (rover_y >= 0) {
+        rover_y = rover_y - 10;
+        uploadBackground()
+        uploadrover()
+      }
+  }
+  if (keyPressed == '40') {
+    if (rover_y <= 420) {
+        rover_y = rover_y + 10;
+         uploadBackground()
+          uploadrover()
+      }
+  }
+  if (keyPressed == '37') {
+    if (rover_x >= 0) {
+        rover_x = rover_x - 10
+        uploadBackground()
+        uploadrover()
+      }
+  }
+  if (keyPressed == '39') {
+    if (rover_x <= 430) {
+        rover_x = rover_x + 10; 
+         uploadBackground()
+          uploadrover()
+      }
+  }
+}
+    </script>
+</body>
+</html>
